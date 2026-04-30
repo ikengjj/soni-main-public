@@ -115,8 +115,7 @@ class OptionsState extends MusicBeatState
 		if (controls.ACCEPT) {
 			openSelectedSubstate(options[curSelected]);
 		}
-    }
-		#end
+	}
 	
 	function changeSelection(change:Int = 0) {
 		curSelected += change;
