@@ -1,6 +1,6 @@
 package;
 
-#if desktop
+#if !mobile
 import Sys.sleep;
 import discord_rpc.DiscordRpc;
 
