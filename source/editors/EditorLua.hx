@@ -180,7 +180,9 @@ class EditorLua {
 			}
 		});
 
+		#if !mobile
 		Discord.DiscordClient.addLuaCallbacks(lua);
+		#end
 
 		call('onCreate', []);
 		#end
