@@ -14,7 +14,7 @@ class FlxVideo extends FlxBasic {
 	#if VIDEOS_ALLOWED
 	public var finishCallback:Void->Void = null;
 	
-	#if (desktop || mobile)
+	#if desktop
 	public static var vlcBitmap:VlcBitmap;
 	#end
 
@@ -46,7 +46,7 @@ class FlxVideo extends FlxBasic {
 		});
 		netStream.play(name);
 
-		#elseif (desktop || mobile)
+		#elseif desktop
 		// by Polybius, check out PolyEngine! https://github.com/polybiusproxy/PolyEngine
 
 		vlcBitmap = new VlcBitmap();
@@ -67,7 +67,7 @@ class FlxVideo extends FlxBasic {
 		#end
 	}
 
-	#if (desktop || mobile)
+	#if desktop
 	function checkFile(fileName:String):String
 	{
 		var pDir = "";
