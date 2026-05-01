@@ -21,6 +21,7 @@ jobs:
           haxelib install flixel-ui 2.6.1
           haxelib install hscript
           haxelib install extension-androidtools
+          haxelib install extension-videoview
           haxelib git hxcpp https://github.com/haxefoundation/hxcpp
           haxelib git linc_luajit https://github.com/andreirudenko/linc_luajit
           haxelib git faxe https://github.com/ashea-code/faxe
