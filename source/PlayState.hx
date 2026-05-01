@@ -2472,9 +2472,9 @@ class PlayState extends MusicBeatState
 	public function startVideo(name:String):Void {
 		#if VIDEOS_ALLOWED
 		var foundFile:Bool = false;
-		var fileName:String = #if MODS_ALLOWED Paths.modFolders('videos/' + name + '.' + Paths.VIDEO_EXT); #else ''; #end
+		var fileName:String = '';
 		#if sys
-		if(FileSystem.exists(fileName)) {
+		if(OpenFlAssets.exists(fileName)) {
 			foundFile = true;
 		}
 		#end
