@@ -249,21 +249,21 @@ class Paths
 			return File.getContent(modFolders(key));
 		#end
 
-		if (Assets.exists(getPreloadPath(key)))
-			return Assets.getText(getPreloadPath(key));
+		if (FileSystem.exists(getPreloadPath(key)))
+			return File.getContent(getPreloadPath(key));
 
 		if (currentLevel != null)
 		{
 			var levelPath:String = '';
 			if(currentLevel != 'shared') {
 				levelPath = getLibraryPathForce(key, currentLevel);
-				if (Assets.exists(levelPath))
-					return Assets.getText(levelPath);
+				if (FileSystem.exists(levelPath))
+					return File.getContent(levelPath);
 			}
 
 			levelPath = getLibraryPathForce(key, 'shared');
-			if (Assets.exists(levelPath))
-				return Assets.getText(levelPath);
+			if (FileSystem.exists(levelPath))
+				return File.getContent(levelPath);
 		}
 		#end
 		return Assets.getText(getPath(key, TEXT));
