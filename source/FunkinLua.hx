@@ -31,7 +31,7 @@ import sys.io.File;
 import Type.ValueType;
 import Controls;
 import DialogueBoxPsych;
-import openfl.utils.Assets as OpenFlAssets;
+
 #if desktop
 import Discord;
 #end
@@ -170,9 +170,14 @@ class FunkinLua {
 		Lua_helper.add_callback(lua, "addLuaScript", function(luaFile:String, ?ignoreAlreadyRunning:Bool = false) { //would be dope asf. 
 			var cervix = luaFile + ".lua";
 			var doPush = false;
-			if(OpenFlAssets.exists(Paths.getPreloadPath(cervix))) {
-				cervix = Paths.getPreloadPath(cervix);
+			if(FileSystem.exists(Paths.modFolders(cervix))) {
+				cervix = Paths.modFolders(cervix);
 				doPush = true;
+			} else {
+				cervix = Paths.getPreloadPath(cervix);
+				if(FileSystem.exists(cervix)) {
+					doPush = true;
+				}
 			}
 
 			if(doPush)
@@ -1153,7 +1158,7 @@ class FunkinLua {
 		});
 		Lua_helper.add_callback(lua, "startVideo", function(videoFile:String) {
 			#if VIDEOS_ALLOWED
-			if(OpenFlAssets.exists(Paths.video(videoFile))) {
+			if(FileSystem.exists(Paths.video(videoFile))) {
 				PlayState.instance.startVideo(videoFile);
 			} else {
 				luaTrace('Video file not found: ' + videoFile);
@@ -1538,9 +1543,7 @@ class FunkinLua {
 			luaTrace('musicFadeOut is deprecated! Use soundFadeOut instead.', false, true);
 		});
 
-		#if !mobile
 		Discord.DiscordClient.addLuaCallbacks(lua);
-		#end
 
 		call('onCreate', []);
 		#end
