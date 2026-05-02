@@ -31,7 +31,7 @@ import sys.io.File;
 import Type.ValueType;
 import Controls;
 import DialogueBoxPsych;
-
+import openfl.utils.Assets as OpenFlAssets;
 #if desktop
 import Discord;
 #end
