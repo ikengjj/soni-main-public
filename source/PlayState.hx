@@ -2088,26 +2088,29 @@ class PlayState extends MusicBeatState
 		// cameras = [FlxG.cameras.list[1]];
 		startingSong = true;
 
-		// SONG 
+		// SONG SPECIFIC SCRIPTS
 		#if LUA_ALLOWED
-		var doScript:Bool = false;
-		var luaFileScript:String = 'data/' + Paths.formatToSongPath(SONG.song) + '/' +  'script.lua';
+		var filesPushed:Array<String> = [];
+		var foldersToCheck:Array<String> = [Paths.getPreloadPath('data/' + Paths.formatToSongPath(SONG.song) + '/')];
 
-		if(OpenFlAssets.exists(Paths.getPreloadPath(luaFileScript))) {
-			luaFileScript = Paths.getPreloadPath(luaFileScript);
-			doScript = true;
-		}
-
-		if(doScript)
+		for (folder in foldersToCheck)
 		{
-			for (lua in luaArray)
+			if(OpenFlAssets.exists(folder))
 			{
-				if(lua.scriptName == luaFileScript) return;
+				var readData:Array<String> = ["script.lua"];
+
+				for (file in readData)
+				{
+					if(file.endsWith('.lua') && !filesPushed.contains(file))
+					{
+						luaArray.push(new FunkinLua(folder + file));
+						filesPushed.push(file);
+					}
+				}
 			}
-			luaArray.push(new FunkinLua(luaFileScript));
 		}
 		#end
-		
+
 		var daSong:String = Paths.formatToSongPath(curSong);
 		if (isStoryMode && !seenCutscene)
 		{
