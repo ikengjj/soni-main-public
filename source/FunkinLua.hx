@@ -170,14 +170,9 @@ class FunkinLua {
 		Lua_helper.add_callback(lua, "addLuaScript", function(luaFile:String, ?ignoreAlreadyRunning:Bool = false) { //would be dope asf. 
 			var cervix = luaFile + ".lua";
 			var doPush = false;
-			if(FileSystem.exists(Paths.modFolders(cervix))) {
-				cervix = Paths.modFolders(cervix);
-				doPush = true;
-			} else {
+			if(OpenFlAssets.exists(Paths.getPreloadPath(cervix))) {
 				cervix = Paths.getPreloadPath(cervix);
-				if(FileSystem.exists(cervix)) {
-					doPush = true;
-				}
+				doPush = true;
 			}
 
 			if(doPush)
@@ -1158,7 +1153,7 @@ class FunkinLua {
 		});
 		Lua_helper.add_callback(lua, "startVideo", function(videoFile:String) {
 			#if VIDEOS_ALLOWED
-			if(FileSystem.exists(Paths.video(videoFile))) {
+			if(OpenFlAssets.exists(Paths.video(videoFile))) {
 				PlayState.instance.startVideo(videoFile);
 			} else {
 				luaTrace('Video file not found: ' + videoFile);
