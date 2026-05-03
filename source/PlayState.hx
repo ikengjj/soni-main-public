@@ -2100,7 +2100,7 @@ class PlayState extends MusicBeatState
 
         for (script in daScripts)
         {
-            var scriptPath:String = Paths.lua(PlayState.SONG.song.toLowerCase() + script);
+            var scriptPath:String = Paths.lua(PlayState.SONG.song.toLowerCase() + "/" + script);
 
             if (OpenFlAssets.exists(scriptPath))
             {
