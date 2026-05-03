@@ -2107,7 +2107,7 @@ class PlayState extends MusicBeatState
                 luaArray.push(new FunkinLua(scriptPath));
             }
         }
-		#end
+        #end
 		
 		var daSong:String = Paths.formatToSongPath(curSong);
 		if (isStoryMode && !seenCutscene)
