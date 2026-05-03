@@ -2114,6 +2114,8 @@ class PlayState extends MusicBeatState
 		{
 			switch (daSong)
 			{
+				case "sonibars":
+					vocals = null;
 				case "monster":
 					var whiteScreen:FlxSprite = new FlxSprite(0, 0).makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.WHITE);
 					add(whiteScreen);
