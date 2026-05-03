@@ -222,6 +222,9 @@ class Paths
 
 	inline static public function voices(song:String):Any
 	{
+		if(songKey == 'sonibars') {
+			return null;
+		}
 		var songKey:String = '${song.toLowerCase().replace(' ', '-')}/Voices';
 		var voices = returnSound('songs', songKey);
 		return voices;
