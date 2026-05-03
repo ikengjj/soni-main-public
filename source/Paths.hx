@@ -225,10 +225,6 @@ class Paths
 		var songKey:String = '${song.toLowerCase().replace(' ', '-')}/Voices';
 		var voices = returnSound('songs', songKey);
 		return voices;
-		if(Paths.formatToSongPath(SONG.song) == 'sonibars')
-		{
-			return null;
-		}
 	}
 
 	inline static public function inst(song:String):Any
