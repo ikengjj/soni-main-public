@@ -2090,25 +2090,18 @@ class PlayState extends MusicBeatState
 
 		// SONG SPECIFIC SCRIPTS
 		#if LUA_ALLOWED
-        var daScripts:Array<String> = [
-            'script',
-            'script1',
-            'script2',
-            'script3',
-            'script4'
-        ];
+	    var doPush:Bool = false;
+	   	var dataScript:String = Paths.getPreloadPath('data/' + Paths.formatToSongPath(SONG.song) + '/' + 'script.lua');
 
-        for (script in daScripts)
-        {
-            var scriptPath:String = Paths.lua(PlayState.SONG.song.toLowerCase() + "/" + script);
+	   	if(OpenFlAssets.exists(dataScript)) {
+	   	    doPush = true;
+	   	}
 
-            if (OpenFlAssets.exists(scriptPath))
-            {
-                luaArray.push(new FunkinLua(scriptPath));
-            }
-        }
-        #end
-		
+	   	if(doPush) {
+	   		luaArray.push(new FunkinLua(dataScript));
+	   	}
+		#end
+
 		var daSong:String = Paths.formatToSongPath(curSong);
 		if (isStoryMode && !seenCutscene)
 		{
