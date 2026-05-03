@@ -46,7 +46,7 @@ class FunkinLua {
 	public var lua:State = null;
 	#end
 
-	public var scriptName:String = '/script.lua';
+	public var scriptName:String = '/script';
 	var gonnaClose:Bool = false;
 
 	public var accessedProps:Map<String, Dynamic> = null;
