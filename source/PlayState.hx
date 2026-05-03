@@ -2090,29 +2090,23 @@ class PlayState extends MusicBeatState
 
 		// SONG SPECIFIC SCRIPTS
 		#if LUA_ALLOWED
-		var filesPushed:Array<String> = [];
-		var foldersToCheck:Array<String> = [Paths.getPreloadPath('data/' + Paths.formatToSongPath(SONG.song) + '/')];
+        var daScripts:Array<String> = [
+            'script',
+            'script1',
+            'script2',
+            'script3',
+            'script4'
+        ];
 
-		#if MODS_ALLOWED
-		foldersToCheck.insert(0, Paths.mods('data/' + Paths.formatToSongPath(SONG.song) + '/'));
-		if(Paths.currentModDirectory != null && Paths.currentModDirectory.length > 0)
-			foldersToCheck.insert(0, Paths.mods(Paths.currentModDirectory + '/data/' + Paths.formatToSongPath(SONG.song) + '/'));
-		#end
+        for (script in daScripts)
+        {
+            var scriptPath:String = Paths.lua(PlayState.SONG.song.toLowerCase() + script);
 
-		for (folder in foldersToCheck)
-		{
-			if(FileSystem.exists(folder))
-			{
-				for (file in FileSystem.readDirectory(folder))
-				{
-					if(file.endsWith('.lua') && !filesPushed.contains(file))
-					{
-						luaArray.push(new FunkinLua(folder + file));
-						filesPushed.push(file);
-					}
-				}
-			}
-		}
+            if (OpenFlAssets.exists(scriptPath))
+            {
+                luaArray.push(new FunkinLua(scriptPath));
+            }
+        }
 		#end
 		
 		var daSong:String = Paths.formatToSongPath(curSong);
